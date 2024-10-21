@@ -1,0 +1,193 @@
+
+/* styles.css */
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-size: var(--font-size, 16px);
+}
+
+.navbar {
+  background-color: var(--primary-color, #4a90e2);
+  padding: 15px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.navbar .nav-link:hover {
+  background-color: #357ABD;
+  transform: translateY(-2px);
+}
+
+section {
+  background: #ffffff;
+  padding: 30px;
+  margin: 25px auto;
+  max-width: 1000px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #2d3e50;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.gavetas-container, .dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  padding: 15px 0;
+  justify-items: center;
+}
+
+.gaveta, .mapa-item, .pasta, .documento {
+  background: #4a90e2;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gaveta:hover, .mapa-item:hover, .pasta:hover, .documento:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin: 15px;
+}
+
+button:hover {
+  background-color: #357ABD;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tabela-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+table, th, td {
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+th, td {
+  padding: 15px;
+  font-size: 16px;
+}
+
+th {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+td {
+  background-color: #ffffff;
+}
+
+table tbody tr:hover {
+  background-color: #f7f7f7;
+}
+
+.pasta[data-status="cheio"] {
+  background-color: #e74c3c;
+}
+
+.pasta[data-status="vazio"] {
+  background-color: #2ecc71;
+}
+
+.config-container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+.config-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.gaveta-container {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  h1 {
+      font-size: 1.75rem;
+  }
+
+  .gaveta, .mapa-item, .pasta, .documento, .card {
+      padding: 15px;
+      font-size: 15px;
+  }
+
+  button {
+      font-size: 14px;
+  }
+
+  th, td {
+      font-size: 14px;
+  }
+
+  input[type="text"], input[type="color"], input[type="number"], select {
+      width: 200px;
+  }
+}
