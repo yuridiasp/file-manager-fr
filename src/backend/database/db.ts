@@ -17,15 +17,15 @@ const db: iDatabase = {
         {
             id: 1,
             category: "Contrato",
-            description: "",
+            description: "Contrato de Honorários",
             name: "Contrato Previdenciário",
             status: 0
         }
     ],
     categories: [
         {
-            id: 1,
-            description: "",
+            id: '1',
+            description: "Contrato de Honorários",
             name: "Contrato"
         }
     ],

@@ -2,14 +2,15 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 class Category {
+    
     @PrimaryGeneratedColumn()
-    id: number
+    id?: string
 
     @Column("text")
-    name: string
+    name?: string
 
     @Column("text")
-    description: string
+    description?: string
 }
 
 export default Category
