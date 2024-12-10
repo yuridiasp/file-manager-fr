@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import CreateWindow from './infrastructure/CreateWindow';
 import addChannels from './channels/channels';
-import { AppDataSource } from '../data-source';
+import AppDataSource from '../data-source';
 
 const App = () => {
     // This method will be called when Electron has finished

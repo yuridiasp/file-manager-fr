@@ -1,8 +1,20 @@
 import { DataSource } from "typeorm";
 
-export const AppDataSource = new DataSource({
+const AppDataSource = new DataSource({
   type: "sqlite",
-  database: "./backend/database/database.sqlite",
-  entities: ["./backend/database/entity/*.ts"], // Caminho para suas entidades
-  synchronize: true, // Sincroniza automaticamente o esquema do banco (somente para desenvolvimento)
-})
+  database: "database.sqlite",
+  synchronize: true,
+  logging: false,
+  entities: [
+    "./backend/entities/*.ts"
+  ],
+  migrations: [
+    "./backend/migrations/*.ts"
+  ],
+  // Adicione esta configuração para evitar carregar drivers desnecessários
+  extra: {
+    driver: "sqlite3", // Força o uso do driver SQLite
+  },
+});
+
+export default AppDataSource;
