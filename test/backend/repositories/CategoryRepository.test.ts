@@ -55,7 +55,6 @@ describe('CategoryRepository', () => {
     it('Delete Method', async () => {
         const id = '1'
 
-
         const result = await categoryRepository.delete(id)
         
         expect(result).toBe(true)

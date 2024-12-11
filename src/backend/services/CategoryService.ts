@@ -14,13 +14,13 @@ class CategoryService implements ICategoryService {
 
     async create (name: string, description: string) {
         const categoryAlreadyExists = await this.categoryRepository.findByName(name)
-
+        
         if (categoryAlreadyExists) {
             return null
         }
 
         const id = await this.categoryRepository.create(name, description)
-
+        
         return id
     }
 
