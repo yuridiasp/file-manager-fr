@@ -4,7 +4,7 @@ import Drawer from "../entities/Drawer"
 import Folder from "../entities/Folder"
 import User from "../entities/User"
 
-interface iDatabase {
+export interface iDatabase {
     documents: Document[]
     categories: Category[]
     drawers: Drawer[]

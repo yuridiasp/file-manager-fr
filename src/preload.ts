@@ -1,9 +1,11 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
+import Category from './backend/entities/Category'
+
 contextBridge.exposeInMainWorld('API', {
-    createCategory: ipcRenderer.invoke('create-category'),
-    findByIdCategory: ipcRenderer.invoke('find-by-id-category'),
-    deleteCategory: ipcRenderer.invoke('delete-category'),
-    updateCategory: ipcRenderer.invoke('update-category'),
-    getCategoryies: ipcRenderer.invoke('get-categoryies'),
+    createCategory: (name: string, description: string) => ipcRenderer.invoke('create-category', name, description),
+    findByIdCategory: (id: string) => ipcRenderer.invoke('find-by-id-category', id),
+    deleteCategory: (id: string) => ipcRenderer.invoke('delete-category', id),
+    updateCategory: (id: string, data: Partial<Category>) => ipcRenderer.invoke('update-category', id, data),
+    getCategoryies: () => ipcRenderer.invoke('get-categoryies'),
 })

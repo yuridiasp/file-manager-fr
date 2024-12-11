@@ -1,3 +1,5 @@
+import crypto from 'node:crypto'
+
 import Category from "../entities/Category"
 import db from '../database/db'
 
@@ -12,6 +14,8 @@ interface ICategoryRepository {
 
 class CategoryRepository implements ICategoryRepository {
 
+    constructor(private database = db){}
+
     async create (name: string, description: string) {
         const category = new Category()
 
@@ -19,43 +23,45 @@ class CategoryRepository implements ICategoryRepository {
         category.name = name
         category.description = description
 
+        this.database.categories.push(category)
+
         return category.id
     }
 
     async findById (id: string) {
-        return db.categories.find(category => category.id === id)
+        return this.database.categories.find(category => category.id === id)
     }
 
     async findByName (name: string) {
-        return db.categories.find(category => category.name === name)
+        return this.database.categories.find(category => category.name === name)
     }
 
     async delete (id: string) {
-        const index = db.categories.findIndex(category => category.id === id)
+        const index = this.database.categories.findIndex(category => category.id === id)
 
         if (index === -1)
             return false
         
-        db.categories.splice(index, 1)
+        this.database.categories.splice(index, 1)
 
         return true
     }
 
     async update (id: string, data: Partial<Category>) {
-        const index = db.categories.findIndex(category => category.id === id)
+        const index = this.database.categories.findIndex(category => category.id === id)
 
         if(index === -1)
             return null
 
         Object.keys(data).forEach(<T extends keyof Category>(key: T) => {
-            db.categories[index][key] = data[key]
+            this.database.categories[index][key] = data[key]
         })
 
-        return db.categories[index]
+        return this.database.categories[index]
     }
 
     async getCategories () {
-        return db.categories
+        return this.database.categories
     }
 }
 
