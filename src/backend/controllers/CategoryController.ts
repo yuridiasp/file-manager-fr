@@ -8,7 +8,7 @@ interface ICategoryController {
     findById: (event: Electron.IpcMainEvent, id: string) => Promise<{ status: number, message: string, element?: Category}>
     delete: (event: Electron.IpcMainEvent, id: string) => Promise<{ status: number, message: string }>
     update: (event: Electron.IpcMainEvent, id: string, data: Partial<Category>) => Promise<{ status: number, message: string, element?: Category }>
-    getCategories: () => Promise<{status: number, elements: Category[]}>
+    getCategories: (event: Electron.IpcMainEvent) => Promise<{status: number, elements: Category[]}>
 }
 
 class CategoryController implements ICategoryController {
@@ -42,12 +42,12 @@ class CategoryController implements ICategoryController {
         }
 
         if (errors.length) {
-            return { status: HttpStatusCode.BadRequest, message: errors.join('\n'), id: null }
+            return { status: HttpStatusCode.BadRequest, message: errors.join('\n') }
         }
 
         const result = await this.categoryService.findById(id)
 
-        return { status: HttpStatusCode.OK, message: 'Found', id: result }
+        return { status: HttpStatusCode.OK, message: 'Found', element: result }
     }
 
     async delete (event: Electron.IpcMainEvent, id: string) {
@@ -67,7 +67,7 @@ class CategoryController implements ICategoryController {
             return { status: HttpStatusCode.BadRequest, message: 'Not found' }
         }
 
-        return { status: HttpStatusCode.OK, message: errors.join('\n') }
+        return { status: HttpStatusCode.OK, message: "Success" }
     }
 
     async update (event: Electron.IpcMainEvent, id: string, data: Partial<Category>) {
@@ -94,7 +94,7 @@ class CategoryController implements ICategoryController {
         return { status: HttpStatusCode.OK, message: 'Success' ,element: result}
     }
 
-    async getCategories () {
+    async getCategories (event: Electron.IpcMainEvent) {
         const categories = await this.categoryService.getCategories()
 
         if (!categories.length) {

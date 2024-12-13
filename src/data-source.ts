@@ -2,14 +2,14 @@ import { DataSource } from "typeorm";
 
 const AppDataSource = new DataSource({
   type: "sqlite",
-  database: "database.sqlite",
+  database: "./backend/database/database.sqlite",
   synchronize: true,
   logging: false,
   entities: [
     "./backend/entities/*.ts"
   ],
   migrations: [
-    "./backend/migrations/*.ts"
+    "./backend/database/migrations/*.ts"
   ],
   // Adicione esta configuração para evitar carregar drivers desnecessários
   extra: {
