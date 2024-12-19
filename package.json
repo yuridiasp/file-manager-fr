@@ -11,7 +11,11 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
-    "test": "jest"
+    "test": "jest",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "typeorm-dataSource": "node --require ts-node/register ./node_modules/typeorm/cli.js -d ./src/dataSource.ts",
+    "typeorm:create": "npm run typeorm migration:create ./src/backend/database/migrations/InitialSetup",
+    "typeorm:run": "npm run typeorm-dataSource migration:run"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.5.0",
